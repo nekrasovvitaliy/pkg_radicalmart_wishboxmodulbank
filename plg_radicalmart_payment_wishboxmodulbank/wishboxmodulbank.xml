@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="radicalmart_payment" method="upgrade">
+	<name>PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK</name>
+	<author>RadicalMart Team</author>
+	<creationDate>October 2026</creationDate>
+	<copyright>Copyright © 2026 RadicalMart. All rights reserved.</copyright>
+	<license>https://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>info@radicalmart.ru</authorEmail>
+	<authorUrl>https://radicalmart.ru</authorUrl>
+	<version>2.3.1</version>
+	<description>PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_DESCRIPTION</description>
+	<namespace path="src">Joomla\Plugin\RadicalMartPayment\WishboxModulBank</namespace>
+	<scriptfile>script.php</scriptfile>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/plg_radicalmart_payment_wishboxmodulbank.ini</language>
+		<language tag="en-GB">en-GB/plg_radicalmart_payment_wishboxmodulbank.sys.ini</language>
+		<language tag="ru-RU">ru-RU/plg_radicalmart_payment_wishboxmodulbank.ini</language>
+		<language tag="ru-RU">ru-RU/plg_radicalmart_payment_wishboxmodulbank.sys.ini</language>
+	</languages>
+	<files>
+		<folder>forms</folder>
+		<folder>services</folder>
+		<folder plugin="wishboxmodulbank">src</folder>
+	</files>
+	<updateservers>
+		<server type="extension" priority="1" name="RadicalMart Payment: WishboxModulBank">
+			https://sovmart.ru/update?element=plg_radicalmart_payment_wishboxmodulbank
+		</server>
+	</updateservers>
+</extension>

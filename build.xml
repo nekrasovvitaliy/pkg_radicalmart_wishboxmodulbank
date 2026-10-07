@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="pkg_radicalmart_wishboxmodulbank" default="make" basedir=".">
+    <property name="plugin.archive" value="plg_radicalmart_payment_wishboxmodulbank.zip"/>
+    <property name="package.archive" value="pkg_radicalmart_wishboxmodulbank.zip"/>
+
+    <target name="make" description="Build the RadicalMart WishBox ModulBank package.">
+        <delete quiet="yes">
+            <fileset dir=".">
+                <include name="${plugin.archive}"/>
+                <include name="${package.archive}"/>
+            </fileset>
+        </delete>
+
+        <zip destfile="${plugin.archive}">
+            <fileset dir="./plg_radicalmart_payment_wishboxmodulbank">
+                <include name="forms/**"/>
+                <include name="language/**"/>
+                <include name="services/**"/>
+                <include name="src/**"/>
+                <include name="script.php"/>
+                <include name="wishboxmodulbank.xml"/>
+            </fileset>
+        </zip>
+
+        <zip destfile="${package.archive}">
+            <fileset dir=".">
+                <include name="${plugin.archive}"/>
+                <include name="language/**"/>
+                <include name="pkg_radicalmart_wishboxmodulbank.xml"/>
+            </fileset>
+        </zip>
+
+        <delete file="${plugin.archive}" quiet="yes"/>
+    </target>
+</project>

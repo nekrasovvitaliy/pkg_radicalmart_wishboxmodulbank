@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldprefix="Joomla\Component\RadicalMartExpress\Administrator\Field">
+	<fieldset name="payment_root">
+		<field name="payment_urls" type="hidden"
+			   label="COM_RADICALMART_EXPRESS_PAYMENT_METHOD_URLS"
+			   filter="unset"/>
+	</fieldset>
+	<fieldset name="payment_settings" label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_PAYMENT">
+		<fields name="payment_method_params">
+			<field name="merchant_id" type="text"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_MERCHANT_ID"
+				   autocomplete="false"
+				   required="true"/>
+			<field name="test_mode" type="radio"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_TEST_MODE"
+				   class="btn-group btn-group-yesno"
+				   default="0">
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+			</field>
+			<field name="secret_key" type="password"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_SECRET_KEY"
+				   autocomplete="false"
+				   showon="test_mode:0"/>
+			<field name="test_secret_key" type="password"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_TEST_SECRET_KEY"
+				   autocomplete="false"
+				   showon="test_mode:1"/>
+			<field name="url_notify" type="copy_text"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_URL_NOTIFY"
+				   filter="unset"
+				   readonly="true"/>
+		</fields>
+	</fieldset>
+	<fieldset name="payment_receipt" label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_RECEIPT">
+		<fields name="payment_method_params">
+			<field name="receipt" type="radio"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_RECEIPT_LABEL"
+				   class="btn-group btn-group-yesno"
+				   default="0">
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+			</field>
+		</fields>
+	</fieldset>
+	<fieldset name="payment_debug" label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_DEBUG">
+		<fields name="payment_method_params">
+			<field name="debug_payment_pay" type="radio"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_DEBUG_PAYMENT_PAY"
+				   class="btn-group btn-group-yesno"
+				   default="0">
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+			</field>
+			<field name="debug_payment_callback" type="radio"
+				   label="PLG_RADICALMART_PAYMENT_WISHBOXMODULBANK_PARAMS_DEBUG_PAYMENT_CALLBACK"
+				   class="btn-group btn-group-yesno"
+				   default="0">
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+			</field>
+		</fields>
+	</fieldset>
+</form>

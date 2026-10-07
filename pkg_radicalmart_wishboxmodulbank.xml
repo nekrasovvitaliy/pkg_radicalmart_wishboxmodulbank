@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="package" version="5.0" method="upgrade">
+    <name>PKG_RADICALMART_WISHBOXMODULBANK</name>
+    <packagename>radicalmart_wishboxmodulbank</packagename>
+    <author>Nekrasov Vitaliy</author>
+    <authorEmail>nekrasov_vitaliy@list.ru</authorEmail>
+    <creationDate>October 2026</creationDate>
+    <version>2.3.1</version>
+    <packager>Nekrasov Vitaliy</packager>
+    <description>PKG_RADICALMART_WISHBOXMODULBANK_XML_DESCRIPTION</description>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/pkg_radicalmart_wishboxmodulbank.sys.ini</language>
+        <language tag="ru-RU">ru-RU/pkg_radicalmart_wishboxmodulbank.sys.ini</language>
+    </languages>
+    <files>
+        <file type="plugin" group="radicalmart_payment" id="wishboxmodulbank">plg_radicalmart_payment_wishboxmodulbank.zip</file>
+    </files>
+</extension>

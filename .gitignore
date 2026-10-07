@@ -1,0 +1,6 @@
+/vendor/
+/.env
+/.phpunit.cache/
+/.phpunit.result.cache
+phing-latest.phar
+/.DS_Store
