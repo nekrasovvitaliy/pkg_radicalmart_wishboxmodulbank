@@ -4,3 +4,4 @@
 /.phpunit.result.cache
 phing-latest.phar
 /.DS_Store
+/.idea/
