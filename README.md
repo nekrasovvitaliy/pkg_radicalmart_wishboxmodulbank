@@ -21,7 +21,7 @@
 
 | Компонент | Требование |
 |---|---|
-| Joomla | 5.0 или новее |
+| Joomla | 6.1.4 или новее |
 | PHP | 8.5 или новее |
 | PHP extension | cURL |
 | Интернет-магазин | RadicalMart или RadicalMart Express |
