@@ -22,168 +22,165 @@ defined('_JEXEC') or die;
  * @since 1.0.0
  */
 return new class implements ServiceProviderInterface {
-	/**
-	 * Register the package installer script.
-	 *
-	 * @param Container $container Dependency injection container.
-	 *
-	 * @return void
-	 *
-	 * @since 1.0.0
-	 *
-	 * @noinspection PhpUnused
-	 */
-	public function register(Container $container): void
-	{
-		/**
-		 * Performs package lifecycle operations and compatibility checks.
-		 *
-		 * @since 1.0.0
-		 */
-		$installerScript = new class ($container->get(AdministratorApplication::class)) implements InstallerScriptInterface {
-			private const string MINIMUM_JOOMLA = '6.1.4';
+    /**
+     * Register the package installer script.
+     *
+     * @param Container $container Dependency injection container.
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     *
+     * @noinspection PhpUnused
+     */
+    public function register(Container $container): void
+    {
+        /**
+         * Performs package lifecycle operations and compatibility checks.
+         *
+         * @since 1.0.0
+         */
+        $installerScript = new class ($container->get(AdministratorApplication::class)) implements InstallerScriptInterface {
+            private const string MINIMUM_JOOMLA = '6.2.0';
 
-			private const string MINIMUM_PHP = '8.5';
+            private const string MINIMUM_PHP = '8.5';
 
-			/**
-			 * Initialize the installer script.
-			 *
-			 * @param AdministratorApplication $app Administrator application.
-			 *
-			 * @return void
-			 *
-			 * @since 1.0.0
-			 */
-			public function __construct(private readonly AdministratorApplication $app)
-			{
-			}
+            /**
+             * Initialize the installer script.
+             *
+             * @param AdministratorApplication $app Administrator application.
+             *
+             * @return void
+             *
+             * @since 1.0.0
+             */
+            public function __construct(private readonly AdministratorApplication $app)
+            {
+            }
 
-			/**
-			 * Handle package installation.
-			 *
-			 * @param InstallerAdapter $adapter Installer adapter.
-			 *
-			 * @return boolean
-			 *
-			 * @since 1.0.0
-			 *
-			 * @noinspection PhpUnused
-			 */
-			public function install(InstallerAdapter $adapter): bool
-			{
-				return true;
-			}
+            /**
+             * Handle package installation.
+             *
+             * @param InstallerAdapter $adapter Installer adapter.
+             *
+             * @return boolean
+             *
+             * @since 1.0.0
+             *
+             * @noinspection PhpUnused
+             */
+            public function install(InstallerAdapter $adapter): bool
+            {
+                return true;
+            }
 
-			/**
-			 * Handle package update.
-			 *
-			 * @param InstallerAdapter $adapter Installer adapter.
-			 *
-			 * @return boolean
-			 *
-			 * @since 1.0.0
-			 *
-			 * @noinspection PhpUnused
-			 */
-			public function update(InstallerAdapter $adapter): bool
-			{
-				return true;
-			}
+            /**
+             * Handle package update.
+             *
+             * @param InstallerAdapter $adapter Installer adapter.
+             *
+             * @return boolean
+             *
+             * @since 1.0.0
+             *
+             * @noinspection PhpUnused
+             */
+            public function update(InstallerAdapter $adapter): bool
+            {
+                return true;
+            }
 
-			/**
-			 * Handle package removal.
-			 *
-			 * @param InstallerAdapter $adapter Installer adapter.
-			 *
-			 * @return boolean
-			 *
-			 * @since 1.0.0
-			 *
-			 * @noinspection PhpUnused
-			 */
-			public function uninstall(InstallerAdapter $adapter): bool
-			{
-				return true;
-			}
+            /**
+             * Handle package removal.
+             *
+             * @param InstallerAdapter $adapter Installer adapter.
+             *
+             * @return boolean
+             *
+             * @since 1.0.0
+             *
+             * @noinspection PhpUnused
+             */
+            public function uninstall(InstallerAdapter $adapter): bool
+            {
+                return true;
+            }
 
-			/**
-			 * Validate the runtime before installation or update.
-			 *
-			 * @param string           $type    Operation type.
-			 * @param InstallerAdapter $adapter Installer adapter.
-			 *
-			 * @return boolean
-			 *
-			 * @since 1.0.0
-			 *
-			 * @noinspection PhpUnused
-			 */
-			public function preflight(string $type, InstallerAdapter $adapter): bool
-			{
-				if ($type === 'uninstall')
-				{
-					return true;
-				}
+            /**
+             * Validate the runtime before installation or update.
+             *
+             * @param string $type Operation type.
+             * @param InstallerAdapter $adapter Installer adapter.
+             *
+             * @return boolean
+             *
+             * @since 1.0.0
+             *
+             * @noinspection PhpUnused
+             */
+            public function preflight(string $type, InstallerAdapter $adapter): bool
+            {
+                if ($type === 'uninstall') {
+                    return true;
+                }
 
-				return $this->checkCompatibility();
-			}
+                return $this->checkCompatibility();
+            }
 
-			/**
-			 * Complete an installer operation.
-			 *
-			 * @param string           $type    Operation type.
-			 * @param InstallerAdapter $adapter Installer adapter.
-			 *
-			 * @return boolean
-			 *
-			 * @since 1.0.0
-			 *
-			 * @noinspection PhpUnused
-			 */
-			public function postflight(string $type, InstallerAdapter $adapter): bool
-			{
-				return true;
-			}
+            /**
+             * Complete an installer operation.
+             *
+             * @param string $type Operation type.
+             * @param InstallerAdapter $adapter Installer adapter.
+             *
+             * @return boolean
+             *
+             * @since 1.0.0
+             *
+             * @noinspection PhpUnused
+             */
+            public function postflight(string $type, InstallerAdapter $adapter): bool
+            {
+                return true;
+            }
 
-			/**
-			 * Check Joomla and PHP runtime versions.
-			 *
-			 * @return boolean
-			 *
-			 * @since 1.0.0
-			 */
-			private function checkCompatibility(): bool
-			{
-				if (!new Version()->isCompatible(self::MINIMUM_JOOMLA))
-				{
-					$this->app->enqueueMessage(
-						Text::sprintf(
-							'PKG_RADICALMART_WISHBOXMODULBANK_ERROR_COMPATIBLE_JOOMLA',
-							self::MINIMUM_JOOMLA
-						),
-						'error'
-					);
+            /**
+             * Check Joomla and PHP runtime versions.
+             *
+             * @return boolean
+             *
+             * @since 1.0.0
+             */
+            private function checkCompatibility(): bool
+            {
+                if (!new Version()->isCompatible(self::MINIMUM_JOOMLA)) {
+                    $this->app->enqueueMessage(
+                        Text::sprintf(
+                            'PKG_RADICALMART_WISHBOXMODULBANK_ERROR_COMPATIBLE_JOOMLA',
+                            self::MINIMUM_JOOMLA
+                        ),
+                        'error'
+                    );
 
-					return false;
-				}
+                    return false;
+                }
 
-				if (version_compare(PHP_VERSION, self::MINIMUM_PHP, '<'))
-				{
-					$this->app->enqueueMessage(
-						Text::sprintf(
-							'PKG_RADICALMART_WISHBOXMODULBANK_ERROR_COMPATIBLE_PHP',
-							self::MINIMUM_PHP
-						),
-						'error'
-					);
+                if (version_compare(PHP_VERSION, self::MINIMUM_PHP, '<')) {
+                    $this->app->enqueueMessage(
+                        Text::sprintf(
+                            'PKG_RADICALMART_WISHBOXMODULBANK_ERROR_COMPATIBLE_PHP',
+                            self::MINIMUM_PHP
+                        ),
+                        'error'
+                    );
 
-					return false;
-				}
+                    return false;
+                }
 
-				return true;
-			}
-		};
+                return true;
+            }
+        };
 
-		$container->set(InstallerScriptInterface::class, $installerScript);
-	}
+        $container->set(InstallerScriptInterface::class, $installerScript);
+    }
 };

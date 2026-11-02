@@ -21,7 +21,7 @@
 
 | Компонент | Требование |
 |---|---|
-| Joomla | 6.1.4 или новее |
+| Joomla | 6.2.0 или новее |
 | PHP | 8.5 или новее |
 | PHP extension | cURL |
 | Интернет-магазин | RadicalMart или RadicalMart Express |
@@ -29,7 +29,7 @@
 
 ## Установка
 
-1. Скачайте готовый файл `pkg_radicalmart_wishboxmodulbank.zip` из релиза либо соберите пакет из исходного кода.
+1. Скачайте готовый файл `pkg_radicalmart_wishboxmodulbank_<версия>.zip` из релиза либо соберите пакет из исходного кода.
 2. В панели управления Joomla откройте **Система → Установка → Расширения**.
 3. Загрузите ZIP-файл пакета.
 4. После установки убедитесь, что плагин **RadicalMart Payment: WishboxModulBank** опубликован. Установщик пакета включает его автоматически.
@@ -92,31 +92,25 @@ https://example.com/radicalmart_express_payment/callback
 
 ## Сборка пакета
 
-Установите зависимости разработчика:
+Для сборки необходима утилита `zip`. Запустите сборщик из корня проекта:
 
 ```bash
-composer install
+./build.sh
 ```
 
-Соберите установочный ZIP с помощью входящего в рабочее окружение Phing PHAR:
+Скрипт читает версию из `pkg_radicalmart_wishboxmodulbank.xml`, собирает ZIP плагина, вкладывает его в пакет и выводит SHA-256 готового архива.
 
-```bash
-php phing-latest.phar
-```
-
-Если Phing установлен глобально:
-
-```bash
-phing
-```
-
-Результат сборки появится в корне проекта:
+Результат появится в корне проекта. Например, для версии `1.0.0`:
 
 ```text
-pkg_radicalmart_wishboxmodulbank.zip
+pkg_radicalmart_wishboxmodulbank_1.0.0.zip
 ```
 
-Файл `phing-latest.phar` не хранится в Git и должен быть добавлен локально либо заменён глобальной установкой Phing.
+Чтобы проверить состав архива:
+
+```bash
+unzip -l pkg_radicalmart_wishboxmodulbank_1.0.0.zip
+```
 
 ## Тесты
 
